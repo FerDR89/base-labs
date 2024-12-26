@@ -1,5 +1,5 @@
-import { decodeToken } from "./jwt.js";
-import pool from "../db.js";
+import { decodeToken } from "../utils/jwt.js";
+import pool from "../config/db.js";
 
 const authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -7,7 +7,7 @@ const authenticate = async (req, res, next) => {
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res
       .status(401)
-      .json({ error: "Authorization header missing or invalid" });
+      .json({ error: "Authorization header is missing or invalid" });
   }
 
   const token = await decodeToken(authHeader);
@@ -24,7 +24,7 @@ const rateLimit = (resource) => {
   return async (req, res, next) => {
     const userId = req.userId;
     if (!userId) {
-      return res.status(500).json({ error: "User ID missing from request" });
+      return res.status(500).json({ error: "User ID is missing from request" });
     }
 
     try {
