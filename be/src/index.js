@@ -3,6 +3,24 @@ import { app } from "./config/express.js";
 import pool from "./config/db.js";
 import { authenticate, rateLimit } from "./middlewares/middlewares.js";
 
+app.get("/my-purchase/:product_name", authenticate, async (req, res) => {
+  const { userId } = req;
+  const { product_name } = req.params;
+  try {
+    const client = await pool.connect();
+    const query = `SELECT amount, product_name FROM user_purchases WHERE user_id = $1 AND product_name = $2`;
+    const values = [userId, product_name];
+    const result = await client.query(query, values);
+
+    client.release();
+
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.post("/buy", authenticate, rateLimit("buy"), async (req, res) => {
   const { userId } = req;
   const { product_name } = req.body;
