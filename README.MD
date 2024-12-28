@@ -15,8 +15,7 @@ BE -> Express, JWT para autenticación y PostgreSQL.
 
 ## Instalación
 
-- Clonar el repositorio desde el siguiente [link](https://github.com/FerDR89/eldar-challenge)
-- En la raíz del directorio ejecutar el siguiente comando:
+- En la raíz del directorio ejecutar el siguiente comando para clonar el repositorio:
 
 ```bash
 git clone git@github.com:FerDR89/base-labs.git
