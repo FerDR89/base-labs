@@ -10,8 +10,8 @@ La arquitectura del proyecto se basa en una arquitectura en capas, donde las cap
 
 Se utilizaron las siguientes tecnologías para llevar a cabo el proyecto:
 
-FE -> Vite, React y Shadcn
-BE -> Express, JWT para autenticación y PostgreSQL.
+- FE -> Vite, React y Shadcn
+- BE -> Express, JWT para autenticación y PostgreSQL.
 
 ## Instalación
 
